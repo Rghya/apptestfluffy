@@ -1,0 +1,22 @@
+{
+   
+
+  "01-13": {
+    "emoji": "🎉",
+    "title": "New Year’s Day",
+    "desc": "A fresh start. Take it slow and be kind to yourself.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis voluptatum aspernatur sapiente, corporis, perferendis atque distinctio veniam asperiores aut iusto repellendus odit neque quibusdam odio repellat accusamus? Nulla sint dolorum iste in reprehenderit temporibus, ipsum recusandae obcaecati et eius repellendus modi, vero molestiae quisquam totam id sequi velit nisi dolor. Iure autem consequuntur doloribus ea fuga quia voluptatibus quaerat reprehenderit illum sed deserunt vitae rerum quibusdam nam ipsa quisquam, necessitatibus perferendis laborum provident distinctio ab! Soluta facilis laborum molestias, voluptates ex tenetur quidem minus nisi nihil consequuntur, quam eius optio eos modi porro voluptatem totam quibusdam deleniti tempora laudantium deserunt.",
+    "challenge": "Write one goal for this year."
+  },
+  "01-14": {
+    "emoji": "💖",
+    "title": "Valentine’s Day",
+    "desc": "Love isn’t just romance. Be gentle with yourself today.",
+    "challenge": "Do one thing that makes you feel calm."
+  },
+  "06-05": {
+    "emoji": "🌍",
+    "title": "World Environment Day",
+    "desc": "Small actions create big change.",
+    "challenge": "Avoid plastic today."
+  }
+}

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Fluffy</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff5fa2">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Irish+Grover&family=Gloria+Hallelujah&family=Inria+Serif&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
+<body>
+
+  
+
+  <div class="hearts"></div>
+  <canvas id="fireworks"></canvas>
+  <div class="emoji-rain"></div>
+
+  <!-- Background -->
+  <div class="bg-overlay"></div>
+
+
+
+
+  <!-- ===== HOME PAGE ===== -->
+  <section id="homePage" class="page">
+
+    
+
+
+
+    <div class="timer glass" id="timer">
+      Time Left : 
+    </div>
+    
+    <h1 class="heading">
+      APP KYA CHOOSE <br>
+      KARNA CHAHATE HO??
+    </h1>
+
+    <div class="buttons">
+      <button class="glass" onclick="showNote()">AJJ KA NOTE</button>
+      <button class="glass" onclick="showSpecial()">AJJ KA SPECIAL</button>
+      <button class="glass" onclick="showMore()">KHAAS OPTIONS</button>
+    </div>
+  </section>
+
+  <!-- ===== NOTE PAGE ===== -->
+  <section id="notePage" class="page hidden">
+    <h1 class="heading">AJJ KA NOTE</h1>
+
+    <div class="note glass" id="dailyNote">
+      Loading today’s note…
+    </div>
+
+    <br>
+    <button class="glass back-btn" onclick="showHome()">← Back</button>
+  </section>
+
+  <!-- ===== GROWTH PAGE ===== -->
+  <section id="growthPage" class="page hidden">
+    <h1 class="heading">AJJ KA NOTE</h1>
+
+    <div class="glass growth-box">
+      <h2>🌱 Our Growth</h2>
+
+      <div class="growth-item">
+        <span>Together since</span>
+        <b id="gtDays">--</b>
+      </div>
+    
+      
+      <div class="growth-item">
+        <span>Days visited</span>
+        <b id="gtVisits">--</b>
+      </div>
+    
+      <div class="growth-item">
+        <span>Hard days survived</span>
+        <b id="gtHard">0</b>
+      </div>
+    
+      <!-- ===== MILESTONE PROGRESS ===== -->
+      <div class="milestone-box">
+        <div class="milestone-label">
+          Next milestone in <span id="msRemaining">--</span> days
+        </div>
+      
+        <div class="milestone-bar">
+          <div class="milestone-fill" id="msFill"></div>
+        </div>
+      </div>
+
+      <button class="glass growth-btn" onclick="addHardDay()">
+        + We survived a hard day
+      </button>
+
+      
+
+
+      <!-- ===== MILESTONE HISTORY ===== -->
+      <div class="milestone-history">
+        <h3>🏁 Milestones Reached</h3>
+        <ul id="milestoneList"></ul>
+      </div>
+
+      <button class="glass growth-btn celebrate-btn" onclick="celebrateFor(5)">
+        🎉 Celebrate
+      </button>
+      
+      
+
+      
+    
+      <div class="growth-message" id="growthMessage"></div>
+    
+      
+    </div>
+
+
+    <br>
+    <button class="glass back-btn" onclick="showMore()">← Back</button>
+  </section>
+
+ 
+
+  <!-- ===== Countdown PAGE ===== -->
+  <section id="countPage" class="page hidden">
+    <h1 class="heading">AJJ KA NOTE</h1>
+    <div class="countdown-box glass">
+      <h2 class="countdown-title">Countdowns ⏳</h2>
+
+      <div class="countdown-item">
+        <span class="cd-label">Days since we started</span>
+        <span class="cd-value" id="cdStarted">--</span>
+      </div>
+    
+      <div class="countdown-item">
+        <span class="cd-label">Days since last call</span>
+        <span class="cd-value" id="cdLastCall">--</span>
+      </div>
+    
+      <div class="countdown-item">
+        <span class="cd-label">Days until next plan</span>
+        <span class="cd-value" id="cdNext">--</span>
+      </div>
+    </div>
+
+    
+
+    <br>
+    <button class="glass back-btn" onclick="showMore()">← Back</button>
+  </section>
+
+  <!-- ===== Open When PAGE ===== -->
+  <section id="owPage" class="page hidden">
+    <h1 class="heading">AJJ KA NOTE</h1>
+
+    <div class="open-when glass">
+      <h2 class="open-title">Open When… 💌</h2>
+
+      <div class="letter-list">
+        <div class="letter" onclick="openLetter('miss')">
+          💭 Open when you miss me
+        </div>
+
+        <div class="letter" onclick="openLetter('low')">
+          🌧️ Open when you feel low
+        </div>
+
+        <div class="letter" onclick="openLetter('night')">
+          🌙 Open when you can’t sleep
+        </div>
+
+        <div class="letter" onclick="openLetter('happy')">
+          ☀️ Open when you’re happy
+        </div>
+        <div class="letter" onclick="openLetter('happy')">
+          ☀️ Open when you’re happy
+        </div>
+      </div>
+
+      <div id="letterModal" class="letter-modal hidden">
+        <div class="letter-box glass">
+          <p id="letterText"></p>
+          <button class="glass" onclick="closeLetter()">Close</button>
+        </div>
+      </div>
+    </div>
+
+
+    <br>
+    <button class="glass back-btn" onclick="showMore()">← Back</button>
+  </section>
+
+
+
+  <!-- ===== Express PAGE ===== -->
+  <section id="expressPage" class="page hidden">
+    <h1 class="heading">Send me How Ya FEELIN today!!</h1>
+
+    <div class="send-feeling glass">
+      <h2 class="feeling-title">Send a Feeling 🤍</h2>
+
+      <div class="feeling-buttons">
+        <button onclick="sendFeelingTab('missing')">🤍<span>Missing you</span></button>
+        <button onclick="sendFeelingTab('need')">🫂<span>Need you</span></button>
+        <button onclick="sendFeelingTab('thinking')">🌙<span>Thinking of you</span></button>
+        <button onclick="sendFeelingTab('proud')">😔<span>I m Sadd</span></button>
+        <button onclick="sendFeelingTab('grateful')">🌸<span>Grateful for you</span></button>
+        <button onclick="sendFeelingTab('naughty')">💋<span>Feelin Naughtyy</span></button>
+      </div>
+    
+      <p id="feelingStatus" class="feeling-status hidden"></p>
+    </div>
+
+
+    <br>
+    <button class="glass back-btn" onclick="showMore()">← Back</button>
+  </section>
+
+
+
+
+  <!-- ===== KHASS PAGE ===== -->
+  <section id="khaasPage" class="page hidden">
+    <h1 class="heading">SOME MORE THINGS FOR YA!!</h1>
+
+
+    <br>
+    <button class="glass back-btn" onclick="showExpress()">Express!!</button>
+    <button class="glass back-btn" onclick="showOW()">Open Whens!!</button>
+    <button class="glass back-btn" onclick="showCount()">CountDowns!!</button>
+    <button class="glass back-btn" onclick="showGrowth()">Growth Timeline!!</button>
+    
+    <button class="glass back-btn" onclick="showHome()">← Back</button>
+  </section>
+
+
+
+  <!-- ===== SPECIAL PAGE ===== -->
+  <section id="specialPage" class="page hidden">
+    <h1 class="heading">AJJ KA SPECIAL</h1>
+
+    <div class="streak glass" id="streakBox">🔥 Streak: 0 days</div>
+
+    <div class="special glass">
+
+      <div class="special-card" onclick="unlock(this,'historyCard')">
+        <h3>🎉 Today’s Event</h3>
+        <p id="specialEvent" class="hidden-card"></p>
+      </div>
+
+      <div id="historyCard" class="special-card locked" onclick="unlock(this,'challengeCard')">
+        <h3>📅 On This Day</h3>
+        <p id="specialHistory" class="hidden-card"></p>
+      </div>
+
+      <div id="challengeCard" class="special-card locked">
+        <h3>🌟 Today’s Challenge</h3>
+        <p id="specialChallenge"></p>
+        <button class="glass done-btn" onclick="markDone()">Mark as Done</button>
+        <p class="done-text hidden">✅ Completed</p>
+      </div>
+
+      <div class="reactions locked" id="reactionBox">
+        <button onclick="react('love')">❤️</button>
+        <button onclick="react('fire')">🎆</button>
+        <button onclick="react('meh')">🌚</button>
+        <button onclick="react('se')">🧐</button>
+        <button onclick="react('cross')">✖</button>
+      </div>
+
+    </div>
+
+    <button class="glass back-btn" onclick="showHome()">← Back</button>
+  </section>
+
+
+  <!-- ===== STICKY MUSIC BAR ===== -->
+  <div id="musicBar" class="glass">
+    <iframe
+      id="spotifyEmbed"
+      width="100%"
+      height="80"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+      loading="lazy">
+    </iframe>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
